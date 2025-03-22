@@ -1,0 +1,58 @@
+.container {
+    font-family: Arial, sans-serif;
+    background-color: #e0f7e9;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #2a9d8f;
+    color: white;
+  }
+  
+  .auth-buttons button {
+    margin: 5px;
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .login {
+    background-color: white;
+    color: #2a9d8f;
+  }
+  
+  .signup {
+    background-color: #264653;
+    color: white;
+  }
+  
+  .poll-form {
+    background-color: white;
+    padding: 20px;
+    margin: 20px auto;
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  input,
+  select {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+  }
+  
+  .create-poll {
+    background-color: #e76f51;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
