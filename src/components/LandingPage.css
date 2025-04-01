@@ -1,58 +1,240 @@
+/* landing-page.css */
 .container {
-    font-family: Arial, sans-serif;
-    background-color: #e0f7e9;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #2a9d8f;
-    color: white;
-  }
-  
-  .auth-buttons button {
-    margin: 5px;
-    padding: 8px 15px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .login {
-    background-color: white;
-    color: #2a9d8f;
-  }
-  
-  .signup {
-    background-color: #264653;
-    color: white;
-  }
-  
-  .poll-form {
-    background-color: white;
-    padding: 20px;
-    margin: 20px auto;
-    width: 50%;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  input,
-  select {
-    width: 90%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-  }
-  
-  .create-poll {
-    background-color: #e76f51;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-  }
-  
+  font-family: 'Arial', sans-serif;
+  background-color: #e0f7e9;
+  min-height: 100vh;
+  padding: 20px;
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #2a9d8f;
+  color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.auth-buttons button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.auth-buttons button:hover {
+  transform: translateY(-2px);
+}
+
+.login {
+  background-color: white;
+  color: #2a9d8f;
+  font-weight: bold;
+}
+
+.signup {
+  background-color: #264653;
+  color: white;
+  font-weight: bold;
+}
+
+.poll-form {
+  background-color: white;
+  padding: 30px;
+  margin: 30px auto;
+  width: 60%;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+input, select {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  font-size: 0.9rem;
+}
+
+select.poll-type {
+  width: 50%;
+  padding: 6px;
+  font-size: 0.85rem;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #2a9d8f;
+  box-shadow: 0 0 5px rgba(42, 157, 143, 0.3);
+}
+
+.option-container {
+  position: relative;
+  margin: 8px 0;
+}
+
+.remove-option {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #e76f51;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.add-option {
+  background: none;
+  border: 1px dashed #2a9d8f;
+  color: #2a9d8f;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.create-poll {
+  background-color: #e76f51;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1.1rem;
+  margin-top: 20px;
+  transition: background-color 0.2s;
+}
+
+.create-poll:hover {
+  background-color: #d65f43;
+}
+
+.settings {
+  margin: 20px 0;
+  text-align: left;
+}
+
+.settings h3 {
+  margin-bottom: 10px;
+}
+
+.settings label {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  color: #333;
+}
+
+.settings input[type="checkbox"] {
+  margin-right: 10px;
+  width: 16px;
+  height: 16px;
+}
+
+.preview-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.preview-content {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.preview-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+}
+
+.preview-poll {
+  text-align: left;
+}
+
+.preview-poll h3 {
+  color: #2a9d8f;
+  margin-bottom: 20px;
+}
+
+.preview-option {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.preview-option input {
+  margin-right: 10px;
+}
+
+.preview-submit {
+  background-color: #2a9d8f;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.preview-submit:hover {
+  background-color: #227c70;
+}
+
+/* New styles to ensure proper layout */
+.poll-type-container {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.answer-options-container {
+  display: block;
+  margin-top: 20px;
+}
