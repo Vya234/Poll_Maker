@@ -1,0 +1,68 @@
+/* src/components/Navbar.css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 40px; /* Increased padding to make the navbar taller and wider */
+  background-color: #2a9d8f; /* Teal background */
+  color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Increased gap to match larger navbar */
+}
+
+.logo-image {
+  height: 80px; /* Increased logo size to match larger navbar */
+  vertical-align: middle;
+}
+
+.logo {
+  margin: 0;
+  font-size: 2rem; /* Increased font size for "QuickPoll" */
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.logo:hover {
+  color: #e9c46a; /* Light yellow hover effect */
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px; /* Increased gap between links */
+  align-items: center;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem; /* Increased font size for nav links */
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: #e9c46a; /* Light yellow hover effect */
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem; /* Increased font size for logout button */
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.logout-button:hover {
+  color: #e9c46a;
+}

@@ -1,0 +1,148 @@
+/* src/components/PollForm.css */
+.poll-form-container {
+    font-family: "Arial", sans-serif;
+    background-color: #e0f7e9;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .poll-form {
+    background-color: white;
+    padding: 30px;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 0.5s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .poll-form h2 {
+    color: #2a9d8f;
+    margin-bottom: 10px;
+  }
+  
+  .poll-form p {
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .poll-form label {
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .poll-form input,
+  .poll-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+  }
+  
+  .poll-form input:focus,
+  .poll-form select:focus {
+    outline: none;
+    border-color: #2a9d8f;
+    box-shadow: 0 0 5px rgba(42, 157, 143, 0.3);
+  }
+  
+  .option-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .remove-option {
+    background-color: #e76f51;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
+  .remove-option:hover {
+    background-color: #d65f43;
+  }
+  
+  .add-option {
+    background: none;
+    border: 1px dashed #2a9d8f;
+    color: #2a9d8f;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+  }
+  
+  .create-poll {
+    background-color: #e76f51;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.1rem;
+    transition: background-color 0.2s;
+  }
+  
+  .create-poll:hover {
+    background-color: #d65f43;
+  }
+  
+  .settings {
+    margin: 20px 0;
+    text-align: left;
+  }
+  
+  .settings h3 {
+    color: #2a9d8f;
+    margin-bottom: 10px;
+  }
+  
+  .settings label {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    color: #333;
+  }
+  
+  .settings input[type="checkbox"] {
+    margin-right: 10px;
+    width: 16px;
+    height: 16px;
+  }
+  
+  .error {
+    color: red;
+    margin-bottom: 15px;
+  }
+  
+  .success {
+    color: green;
+    margin-bottom: 15px;
+  }

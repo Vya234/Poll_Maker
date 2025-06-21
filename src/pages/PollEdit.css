@@ -1,0 +1,70 @@
+/* src/pages/PollEdit.css */
+.poll-edit-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .poll-edit-container h2 {
+    color: #2a9d8f;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .poll-edit-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .poll-edit-container input,
+  .poll-edit-container select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .option-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .option-row button {
+    padding: 5px 10px;
+    background-color: #e76f51;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .option-row button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .poll-edit-container button[type="button"] {
+    background-color: #264653;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .poll-edit-container button[type="button"]:hover {
+    background-color: #1e3a47;
+  }
+  
+  .error {
+    color: red;
+    text-align: center;
+    margin-bottom: 15px;
+  }
