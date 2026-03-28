@@ -1,9 +1,8 @@
 // src/pages/Signup.jsx
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom"; // Add Link for navigation to login
-import axios from "axios";
+import { useNavigate, Link } from "react-router-dom";
+import api from "../api/client";
 import Button from "../components/Button";
-import "./Auth.css";
 
 const Signup = () => {
   const [username, setUsername] = useState("");
@@ -18,30 +17,39 @@ const Signup = () => {
     setSuccess(null);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/signup", {
+      const response = await api.post("/api/auth/signup", {
         username,
         password,
       });
       localStorage.setItem("token", response.data.token);
       setSuccess("Signup successful! Redirecting...");
-      window.dispatchEvent(new Event("tokenChange")); // Trigger Navbar update
-      setTimeout(() => navigate("/polls"), 1000); // Redirect to /polls after 1 second
+      window.dispatchEvent(new Event("tokenChange"));
+      setTimeout(() => navigate("/polls"), 1000);
     } catch (err) {
       setError(err.response?.data?.message || "Signup failed");
     }
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-form">
-        <h2>Sign Up for QuickPoll</h2>
-        <p>Create an account to start making polls.</p>
-        {error && <p className="error">{error}</p>}
-        {success && <p className="success">{success}</p>}
+    <div className="page-shell flex min-h-[calc(100vh-8rem)] items-center justify-center py-10">
+      <div className="surface-card w-full max-w-md animate-fadeIn text-center">
+        <h2 className="page-title text-2xl text-brand-600 sm:text-3xl">Sign Up for QuickPoll</h2>
+        <p className="mt-2 text-ink-muted">Create an account to start making polls.</p>
+        {error && (
+          <p className="mt-4 rounded-xl bg-danger-50 px-3 py-2 text-sm font-medium text-danger-600" role="alert">
+            {error}
+          </p>
+        )}
+        {success && (
+          <p className="mt-4 rounded-xl bg-brand-50 px-3 py-2 text-sm font-semibold text-brand-700">
+            {success}
+          </p>
+        )}
 
-        <form onSubmit={handleSubmit}>
-          <label>Username</label>
+        <form className="mt-6 text-left" onSubmit={handleSubmit}>
+          <label className="form-label">Username</label>
           <input
+            className="form-input"
             type="text"
             placeholder="Choose a username"
             value={username}
@@ -49,8 +57,9 @@ const Signup = () => {
             required
           />
 
-          <label>Password</label>
+          <label className="form-label mt-4">Password</label>
           <input
+            className="form-input"
             type="password"
             placeholder="Create a password"
             value={password}
@@ -58,12 +67,15 @@ const Signup = () => {
             required
           />
 
-          <Button type="submit" className="auth-button">
+          <Button type="submit" variant="primary" className="mt-6 w-full min-h-12 text-base">
             Sign Up
           </Button>
         </form>
-        <p>
-          Already have an account? <Link to="/login">Login</Link>
+        <p className="mt-6 text-sm text-ink-muted">
+          Already have an account?{" "}
+          <Link to="/login" className="font-semibold text-brand-600 underline-offset-2 hover:underline">
+            Login
+          </Link>
         </p>
       </div>
     </div>

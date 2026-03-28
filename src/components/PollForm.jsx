@@ -1,8 +1,7 @@
 // src/components/PollForm.jsx
 import React, { useState } from "react";
-import axios from "axios";
+import api from "../api/client";
 import Button from "./Button";
-import "./PollForm.css";
 
 const PollForm = () => {
   const [options, setOptions] = useState(["", ""]);
@@ -29,8 +28,8 @@ const PollForm = () => {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/polls",
+      await api.post(
+        "/api/polls",
         {
           title,
           pollType,
@@ -39,7 +38,7 @@ const PollForm = () => {
         },
         {
           headers: { Authorization: `Bearer ${token}` },
-        }
+        },
       );
 
       setSuccess("Poll created successfully!");
@@ -54,16 +53,25 @@ const PollForm = () => {
   };
 
   return (
-    <div className="poll-form-container">
-      <div className="poll-form">
-        <h2>Create a Poll</h2>
-        <p>Complete the fields below to create your poll.</p>
-        {error && <p className="error">{error}</p>}
-        {success && <p className="success">{success}</p>}
+    <div className="page-shell flex min-h-[calc(100vh-8rem)] items-center justify-center py-10">
+      <div className="surface-card w-full max-w-2xl animate-fadeIn text-center">
+        <h2 className="page-title text-2xl text-brand-600 sm:text-3xl">Create a Poll</h2>
+        <p className="mt-2 text-ink-muted">Complete the fields below to create your poll.</p>
+        {error && (
+          <p className="mt-4 rounded-xl bg-danger-50 px-3 py-2 text-sm font-medium text-danger-600">
+            {error}
+          </p>
+        )}
+        {success && (
+          <p className="mt-4 rounded-xl bg-brand-50 px-3 py-2 text-sm font-semibold text-brand-700">
+            {success}
+          </p>
+        )}
 
-        <form onSubmit={handleSubmit}>
-          <label>Title</label>
+        <form className="mt-6 text-left" onSubmit={handleSubmit}>
+          <label className="form-label">Title</label>
           <input
+            className="form-input"
             type="text"
             placeholder="Enter your question"
             value={title}
@@ -71,16 +79,21 @@ const PollForm = () => {
             required
           />
 
-          <label>Poll Type</label>
-          <select value={pollType} onChange={(e) => setPollType(e.target.value)}>
+          <label className="form-label mt-4">Poll Type</label>
+          <select
+            className="form-input"
+            value={pollType}
+            onChange={(e) => setPollType(e.target.value)}
+          >
             <option>Multiple Choice</option>
             <option>Single Choice</option>
           </select>
 
-          <label>Options</label>
+          <label className="form-label mt-4">Options</label>
           {options.map((option, index) => (
-            <div key={index} className="option-container">
+            <div key={index} className="mb-3 flex items-center gap-3">
               <input
+                className="form-input"
                 type="text"
                 placeholder={`Option ${index + 1}`}
                 value={option}
@@ -88,29 +101,37 @@ const PollForm = () => {
                 required
               />
               {options.length > 2 && (
-                <Button type="button" className="remove-option" onClick={() => removeOption(index)}>
+                <Button
+                  type="button"
+                  variant="danger"
+                  size="sm"
+                  className="shrink-0"
+                  onClick={() => removeOption(index)}
+                >
                   Remove
                 </Button>
               )}
             </div>
           ))}
-          <Button type="button" className="add-option" onClick={addOption}>
+          <Button type="button" variant="dashed" size="sm" className="my-2 w-full sm:w-auto" onClick={addOption}>
             + Add Option
           </Button>
 
-          <div className="settings">
-            <h3>Settings</h3>
-            <label>
+          <div className="mt-6 rounded-xl border border-brand-500/10 bg-brand-50/50 p-4 text-left">
+            <h3 className="text-sm font-bold text-brand-700">Settings</h3>
+            <label className="mt-3 flex cursor-pointer items-center gap-3 text-sm font-medium text-ink">
               <input
                 type="checkbox"
+                className="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
                 checked={allowMultiple}
                 onChange={(e) => setAllowMultiple(e.target.checked)}
               />
               Allow multiple selections
             </label>
-            <label>
+            <label className="mt-3 flex cursor-pointer items-center gap-3 text-sm font-medium text-ink">
               <input
                 type="checkbox"
+                className="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
                 checked={requireNames}
                 onChange={(e) => setRequireNames(e.target.checked)}
               />
@@ -118,7 +139,7 @@ const PollForm = () => {
             </label>
           </div>
 
-          <Button type="submit" className="create-poll">
+          <Button type="submit" variant="primary" className="mt-6 w-full min-h-12 text-base">
             Create Poll
           </Button>
         </form>

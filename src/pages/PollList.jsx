@@ -1,9 +1,8 @@
 // src/pages/PollList.jsx
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../api/client";
 import Button from "../components/Button";
-import "./PollList.css";
 
 const PollList = () => {
   const [polls, setPolls] = useState([]);
@@ -16,15 +15,12 @@ const PollList = () => {
         const token = localStorage.getItem("token");
         if (!token) {
           setError("No authentication token found. Please log in.");
-          console.log("No token found in localStorage");
           navigate("/login");
           return;
         }
-        console.log("Fetching polls with token:", token.substring(0, 20) + "...");
-        const response = await axios.get("http://localhost:5000/api/polls", {
+        const response = await api.get("/api/polls", {
           headers: { Authorization: `Bearer ${token}` },
         });
-        console.log("Polls fetched:", response.data);
         setPolls(response.data);
       } catch (err) {
         console.error("Error fetching polls:", err.response?.data || err.message);
@@ -47,11 +43,9 @@ const PollList = () => {
           navigate("/login");
           return;
         }
-        console.log("Deleting poll with ID:", pollId);
-        await axios.delete(`http://localhost:5000/api/polls/${pollId}`, {
+        await api.delete(`/api/polls/${pollId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        console.log("Poll deleted successfully:", pollId);
         setPolls(polls.filter((poll) => poll._id !== pollId));
       } catch (err) {
         console.error("Error deleting poll:", err.response?.data || err.message);
@@ -65,28 +59,42 @@ const PollList = () => {
   };
 
   const handleEdit = (pollId) => {
-    console.log("Navigating to edit page for poll ID:", pollId);
     navigate(`/edit/${pollId}`);
   };
 
   return (
-    <div className="poll-list-container">
-      <h2>My Polls</h2>
-      {error && <p className="error">{error}</p>}
+    <div className="page-shell py-10">
+      <h2 className="page-title text-center text-3xl text-brand-600 sm:text-4xl">My Polls</h2>
+      {error && (
+        <p className="mx-auto mt-4 max-w-xl rounded-xl bg-danger-50 px-4 py-2 text-center text-sm font-medium text-danger-600">
+          {error}
+        </p>
+      )}
       {polls.length === 0 ? (
-        <p>
-          No polls found. <Link to="/create">Create one now!</Link>
+        <p className="mx-auto mt-8 max-w-md text-center text-ink-muted">
+          No polls found.{" "}
+          <Link to="/create" className="font-semibold text-brand-600 underline-offset-2 hover:underline">
+            Create one now!
+          </Link>
         </p>
       ) : (
-        <ul className="poll-list">
+        <ul className="mx-auto mt-8 max-w-2xl space-y-4">
           {polls.map((poll) => (
-            <li key={poll._id} className="poll-item">
-              <Link to={`/poll/${poll._id}`}>{poll.title}</Link>
-              <div className="poll-actions">
-                <Button className="edit-button" onClick={() => handleEdit(poll._id)}>
+            <li
+              key={poll._id}
+              className="rounded-2xl border border-brand-500/12 bg-white p-5 shadow-card transition hover:-translate-y-0.5 hover:shadow-lg"
+            >
+              <Link
+                to={`/poll/${poll._id}`}
+                className="block text-left text-lg font-bold text-ink transition hover:text-brand-600"
+              >
+                {poll.title}
+              </Link>
+              <div className="mt-4 flex flex-wrap justify-center gap-2 sm:justify-end">
+                <Button variant="secondary" size="sm" onClick={() => handleEdit(poll._id)}>
                   Edit
                 </Button>
-                <Button className="delete-button" onClick={() => handleDelete(poll._id)}>
+                <Button variant="danger" size="sm" onClick={() => handleDelete(poll._id)}>
                   Delete
                 </Button>
               </div>

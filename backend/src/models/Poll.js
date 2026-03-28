@@ -1,4 +1,3 @@
-// models/Poll.js
 const mongoose = require('mongoose');
 
 const pollSchema = new mongoose.Schema({
@@ -26,11 +25,11 @@ const pollSchema = new mongoose.Schema({
           userId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
-            default: null, // Null if the voter is anonymous
+            default: null,
           },
           name: {
             type: String,
-            default: null, // Name of the voter if requireNames is true
+            default: null,
           },
         },
       ],

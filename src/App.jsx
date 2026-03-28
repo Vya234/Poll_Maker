@@ -7,11 +7,10 @@ import PollForm from "./components/PollForm";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PollList from "./pages/PollList";
-import PublicPolls from "./pages/PublicPolls"; // Import the new page
+import PublicPolls from "./pages/PublicPolls";
 import PollVote from "./pages/PollVote";
 import PollResults from "./pages/PollResults";
 import PollEdit from "./pages/PollEdit";
-import "./App.css";
 
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem("token");
@@ -21,9 +20,9 @@ const PrivateRoute = ({ children }) => {
 const App = () => {
   return (
     <Router>
-      <div className="App">
+      <div className="flex min-h-screen flex-col">
         <Navbar />
-        <main>
+        <main className="flex-1">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route
