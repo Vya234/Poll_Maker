@@ -33,7 +33,7 @@
 
 ### Public Polls
 
-![Public Polls page](./screenshots/public.png)
+![Public Polls page](./screenshots/public-polls.png)
 
 ### Create Poll
 
