@@ -35,12 +35,12 @@
 
 ![Public Polls page](./screenshots/public-polls.png)
 
+<details>
+<summary><strong>More screenshots</strong></summary>
+
 ### Create Poll
 
 ![Create Poll page](./screenshots/create.png)
-
-<details>
-<summary><strong>More screenshots</strong></summary>
 
 ### Results
 
